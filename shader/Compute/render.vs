@@ -8,10 +8,7 @@ layout(std140, binding=4) buffer Position
 uniform mat4 uProjection;
 uniform mat4 uView;
 
-out float vId;
-
 void main()
 {
-    vId = gl_VertexID;
-    gl_Position = uProjection * uView * vec4(Positions[gl_VertexID].xyz, 1.0);
+    gl_Position = vec4(Positions[gl_VertexID].xyz, 1.0);
 }

@@ -1,9 +1,12 @@
-#version 330 core
-out vec4 FragColor;
+#version 430
 
-in float vId;
+layout (binding = 0) uniform sampler2D uSampler;
+
+in vec2 vTexCoord;
+out vec4 oColor;
 
 void main()
 {           
-    FragColor = vec4(1.0, vId / 1000, 1.0, 1.0);
+  vec4 vTexColor = texture2D(uSampler, vTexCoord);
+  oColor = vTexColor;
 }

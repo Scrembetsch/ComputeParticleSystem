@@ -17,17 +17,18 @@ layout(std140, binding=6) buffer Color
 
 layout(LOCAL_WORK_GROUP_SIZE) in;
 
+uniform float uDeltaTime;
+
 void main()
 {
     const vec3 cGravity = vec3(0.0, 0.0, 0.0);
-    const float dt = 0.1;
     uint gid = gl_GlobalInvocationID.x;
 
     vec3 p = Positions[gid].xyz;
     vec3 v = Velocities[gid].xyz;
 
-    vec3 pp = p + v * dt + 0.5 * dt * dt * cGravity;
-    vec3 vp = v + cGravity * dt;
+    vec3 pp = p + v * uDeltaTime + 0.5 * uDeltaTime * uDeltaTime * cGravity;
+    vec3 vp = v + cGravity * uDeltaTime;
 
     Positions[gid].xyz = pp;
     Velocities[gid].xyz = vp;

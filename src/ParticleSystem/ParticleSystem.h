@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include "../glBasics/Shader.h"
+#include "../glBasics/Texture2D.h"
 
 class ParticleSystem
 {
@@ -14,7 +15,8 @@ public:
 	~ParticleSystem();
 
 	void Init();
-	void Update();
+	void SetMatrices(const glm::vec3& frontVec, const glm::vec3& upVec);
+	void Update(float dt);
 	void Render(glm::mat4 proj, glm::mat4 view);
 
 private:
@@ -24,8 +26,13 @@ private:
 
 	GLuint mVao;
 
+	Texture2D mTex;
+
 	Shader mComputeShader;
 	Shader mRenderShader;
+
+	glm::vec3 mQuad1;
+	glm::vec3 mQuad2;
 
 	glm::vec3 mLocalWorkGroupSize;
 };

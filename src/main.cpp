@@ -167,7 +167,8 @@ void UpdateScene()
 
 void UpdateComputeShader()
 {
-    mCsParticles.Update();
+    mCsParticles.Update(mDeltaTime);
+    mCsParticles.SetMatrices(mCamera.Front, mCamera.Up);
 }
 
 void RenderDefaultPass()
